@@ -1,0 +1,26 @@
+{
+  "name": "agents-js-demo",
+  "version": "1.0.0",
+  "description": "Agents.js 学习示例项目",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "demo:basic": "node examples/basic-agent.js",
+    "demo:tools": "node examples/agent-with-tools.js",
+    "demo:memory": "node examples/agent-with-memory.js",
+    "demo:multi": "node examples/multi-agent.js",
+    "demo:workflow": "node examples/workflow-agent.js",
+    "demo:advanced": "node examples/advanced-example.js",
+    "demo:custom": "node examples/custom-agent-template.js"
+  },
+  "keywords": ["agents", "ai", "demo"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@langchain/core": "^0.3.0",
+    "@langchain/openai": "^0.3.0",
+    "langchain": "^0.3.0",
+    "dotenv": "^16.3.1",
+    "zod": "^3.22.4"
+  }
+}
