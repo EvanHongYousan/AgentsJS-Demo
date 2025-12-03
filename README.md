@@ -55,7 +55,7 @@ OPENAI_MODEL=gpt-3.5-turbo
 
 **获取 OpenAI API Key**: https://platform.openai.com/api-keys
 
-> 💡 **推荐使用 OpenRouter**：一个 API Key 即可访问多种模型，还有免费额度！详见 [OpenRouter 使用指南](./OPENROUTER_GUIDE.md)
+> 💡 **推荐使用 OpenRouter**：一个 API Key 即可访问多种模型，还有免费额度！详见 [OpenRouter 使用指南](./docs/OPENROUTER_GUIDE.md)
 
 ### 3. 运行示例
 

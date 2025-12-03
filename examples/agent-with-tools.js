@@ -15,14 +15,15 @@ async function runAgentWithTools() {
   // 1. 定义自定义工具 - 计算器
   const calculatorTool = new DynamicStructuredTool({
     name: "calculator",
-    description: "用于执行基本的数学计算，支持加减乘除",
+    description: "用于执行基本的数学计算，支持加减乘除。输入一个数学表达式，返回计算结果。",
     schema: z.object({
       expression: z.string().describe("要计算的数学表达式，例如: '2 + 2' 或 '10 * 5'"),
     }),
     func: async ({ expression }) => {
       try {
-        // 安全地评估数学表达式
-        const result = eval(expression);
+        // 清理表达式，只允许数字和基本运算符
+        const sanitized = expression.replace(/[^0-9+\-*/().\s]/g, '');
+        const result = eval(sanitized);
         return `计算结果: ${expression} = ${result}`;
       } catch (error) {
         return `计算错误: ${error.message}`;
@@ -33,7 +34,7 @@ async function runAgentWithTools() {
   // 2. 定义自定义工具 - 天气查询（模拟）
   const weatherTool = new DynamicStructuredTool({
     name: "get_weather",
-    description: "获取指定城市的天气信息",
+    description: "获取指定城市的天气信息。输入城市名称，返回该城市的天气状况。",
     schema: z.object({
       city: z.string().describe("城市名称，例如: '北京' 或 '上海'"),
     }),
@@ -51,10 +52,8 @@ async function runAgentWithTools() {
   // 3. 定义自定义工具 - 时间工具
   const timeTool = new DynamicStructuredTool({
     name: "get_current_time",
-    description: "获取当前时间",
-    schema: z.object({
-      timezone: z.string().optional().describe("时区，例如: 'Asia/Shanghai'"),
-    }),
+    description: "获取当前时间。无需输入参数，直接返回当前时间。",
+    schema: z.object({}), // 移除可选参数，简化为无参数
     func: async () => {
       const now = new Date();
       return `当前时间: ${now.toLocaleString("zh-CN")}`;
@@ -68,11 +67,12 @@ async function runAgentWithTools() {
   const model = getModel({ temperature: 0 });
 
   // 5. 创建 Agent，添加工具
+  // 使用 structured-chat-zero-shot-react-description 以获得更好的工具兼容性
   const agent = await initializeAgentExecutorWithOptions(
     [calculatorTool, weatherTool, timeTool],
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "structured-chat-zero-shot-react-description",
       verbose: true,
     }
   );
