@@ -3,14 +3,11 @@
  * 复制这个文件开始创建你自己的 Agent
  */
 
-import { ChatOpenAI } from "@langchain/openai";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
 import { BufferMemory } from "langchain/memory";
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { z } from "zod";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { getModel, showModelConfig } from "../config/model-config.js";
 
 async function createCustomAgent() {
   console.log("🎨 自定义 Agent 模板\n");
@@ -80,15 +77,14 @@ async function createCustomAgent() {
     },
   });
 
+  // 显示当前模型配置
+  showModelConfig();
+
   // ===== 第二步: 配置语言模型 =====
   
-  const model = new ChatOpenAI({
-    modelName: "gpt-3.5-turbo", // 或 "gpt-4"
+  const model = getModel({ 
     temperature: 0.7, // 0 = 确定性，1 = 创造性
-    openAIApiKey: process.env.OPENAI_API_KEY,
-    configuration: {
-      baseURL: process.env.OPENAI_BASE_URL,
-    },
+    // modelName: "anthropic/claude-3-haiku" // 可选：覆盖环境变量中的模型
   });
 
   // ===== 第三步: 配置记忆（可选）=====

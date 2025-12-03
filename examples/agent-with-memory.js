@@ -3,14 +3,11 @@
  * 展示如何让 Agent 记住对话历史
  */
 
-import { ChatOpenAI } from "@langchain/openai";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
 import { BufferMemory } from "langchain/memory";
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { z } from "zod";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { getModel, showModelConfig } from "../config/model-config.js";
 
 async function runAgentWithMemory() {
   console.log("🧠 示例 3: 带记忆的 Agent\n");
@@ -43,15 +40,11 @@ async function runAgentWithMemory() {
     },
   });
 
+  // 显示当前模型配置
+  showModelConfig();
+
   // 2. 初始化模型
-  const model = new ChatOpenAI({
-    modelName: "gpt-3.5-turbo",
-    temperature: 0.7,
-    openAIApiKey: process.env.OPENAI_API_KEY,
-    configuration: {
-      baseURL: process.env.OPENAI_BASE_URL,
-    },
-  });
+  const model = getModel({ temperature: 0.7 });
 
   // 3. 创建记忆组件
   const memory = new BufferMemory({

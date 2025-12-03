@@ -16,12 +16,29 @@ npm install
 cp .env.example .env
 ```
 
-编辑 `.env`，填入你的 OpenAI API Key：
+#### 方式一：使用 OpenRouter（推荐）🌟
+
+OpenRouter 让你用一个 API Key 访问多种模型（GPT、Claude、Gemini 等）
+
+编辑 `.env`：
 
 ```env
-OPENAI_API_KEY=sk-your-key-here
-OPENAI_BASE_URL=https://api.openai.com/v1
+AI_PROVIDER=openrouter
+OPENROUTER_API_KEY=sk-or-v1-your-key-here
+OPENROUTER_MODEL=openai/gpt-3.5-turbo
 ```
+
+**获取免费 API Key**: https://openrouter.ai/keys
+
+#### 方式二：使用 OpenAI
+
+```env
+AI_PROVIDER=openai
+OPENAI_API_KEY=sk-your-key-here
+OPENAI_MODEL=gpt-3.5-turbo
+```
+
+> 💡 推荐 OpenRouter：免费额度 + 多模型选择！查看 [OpenRouter 指南](./OPENROUTER_GUIDE.md)
 
 ### 步骤 3: 运行第一个示例
 

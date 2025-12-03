@@ -3,25 +3,18 @@
  * 展示如何创建一个最简单的 AI Agent
  */
 
-import { ChatOpenAI } from "@langchain/openai";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { getModel, showModelConfig } from "../config/model-config.js";
 
 async function runBasicAgent() {
   console.log("🤖 示例 1: 基础 Agent\n");
   console.log("=" .repeat(50));
 
-  // 1. 初始化语言模型
-  const model = new ChatOpenAI({
-    modelName: "gpt-3.5-turbo",
-    temperature: 0.7,
-    openAIApiKey: process.env.OPENAI_API_KEY,
-    configuration: {
-      baseURL: process.env.OPENAI_BASE_URL,
-    },
-  });
+  // 显示当前模型配置
+  showModelConfig();
+
+  // 1. 初始化语言模型（自动根据环境变量选择 OpenAI 或 OpenRouter）
+  const model = getModel({ temperature: 0.7 });
 
   // 2. 创建 Agent (无工具版本)
   const agent = await initializeAgentExecutorWithOptions(

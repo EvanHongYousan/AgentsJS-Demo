@@ -27,18 +27,35 @@ npm install
 
 ### 2. 配置环境变量
 
-复制 `.env.example` 为 `.env` 并填入你的 OpenAI API Key：
+复制 `.env.example` 为 `.env` 并配置 API Key：
 
 ```bash
 cp .env.example .env
 ```
 
-编辑 `.env` 文件：
+#### 方式一：使用 OpenRouter（推荐）
+
+OpenRouter 可以访问多种 LLM 模型，包括 GPT、Claude、Gemini 等。
 
 ```env
-OPENAI_API_KEY=your_actual_api_key
-OPENAI_BASE_URL=https://api.openai.com/v1
+AI_PROVIDER=openrouter
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+OPENROUTER_MODEL=openai/gpt-3.5-turbo
 ```
+
+**获取 OpenRouter API Key**: https://openrouter.ai/keys
+
+#### 方式二：使用 OpenAI
+
+```env
+AI_PROVIDER=openai
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_MODEL=gpt-3.5-turbo
+```
+
+**获取 OpenAI API Key**: https://platform.openai.com/api-keys
+
+> 💡 **推荐使用 OpenRouter**：一个 API Key 即可访问多种模型，还有免费额度！详见 [OpenRouter 使用指南](./OPENROUTER_GUIDE.md)
 
 ### 3. 运行示例
 

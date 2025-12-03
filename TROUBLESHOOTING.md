@@ -2,6 +2,62 @@
 
 ## 常见问题和解决方案
 
+### 0. OpenRouter 相关问题 🌟
+
+#### 问题: `Error: Incorrect API key provided` (OpenRouter)
+
+**原因**: OpenRouter API Key 配置错误或未设置
+
+**解决方案**:
+```bash
+# 1. 确认 .env 文件配置
+AI_PROVIDER=openrouter
+OPENROUTER_API_KEY=sk-or-v1-your-actual-key-here
+
+# 2. 确认 API Key 格式
+# OpenRouter 的 Key 应该以 sk-or-v1- 开头
+# 获取 Key: https://openrouter.ai/keys
+```
+
+#### 问题: `Error: Model not found` (OpenRouter)
+
+**原因**: 模型名称不正确
+
+**解决方案**:
+```bash
+# 1. 运行命令查看可用模型
+npm run models
+
+# 2. 常用模型名称（注意区分大小写）
+OPENROUTER_MODEL=openai/gpt-3.5-turbo      # ✅ 正确
+OPENROUTER_MODEL=gpt-3.5-turbo             # ❌ 错误
+OPENROUTER_MODEL=openai/GPT-3.5-turbo      # ❌ 错误
+
+# 3. 查看完整模型列表
+# https://openrouter.ai/models
+```
+
+#### 问题: `Error: Insufficient credits` (OpenRouter)
+
+**原因**: OpenRouter 账户余额不足
+
+**解决方案**:
+1. 访问 https://openrouter.ai/credits 充值
+2. 使用免费模型（如 `google/gemini-pro`）
+3. 新用户通常有免费额度
+
+#### 问题: OpenRouter 请求太慢
+
+**解决方案**:
+```env
+# 切换到更快的模型
+OPENROUTER_MODEL=anthropic/claude-3-haiku    # 很快
+OPENROUTER_MODEL=openai/gpt-3.5-turbo        # 快速
+OPENROUTER_MODEL=google/gemini-pro           # 中等
+```
+
+---
+
 ### 1. API Key 相关问题
 
 #### 问题: `Error: Incorrect API key provided`

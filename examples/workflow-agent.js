@@ -3,13 +3,10 @@
  * 展示如何创建一个执行复杂工作流的 Agent
  */
 
-import { ChatOpenAI } from "@langchain/openai";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { z } from "zod";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { getModel, showModelConfig } from "../config/model-config.js";
 
 async function runWorkflowAgent() {
   console.log("🔄 示例 5: 工作流 Agent\n");
@@ -98,15 +95,11 @@ async function runWorkflowAgent() {
     },
   });
 
+  // 显示当前模型配置
+  showModelConfig();
+
   // 创建 Agent
-  const model = new ChatOpenAI({
-    modelName: "gpt-3.5-turbo",
-    temperature: 0,
-    openAIApiKey: process.env.OPENAI_API_KEY,
-    configuration: {
-      baseURL: process.env.OPENAI_BASE_URL,
-    },
-  });
+  const model = getModel({ temperature: 0 });
 
   const agent = await initializeAgentExecutorWithOptions(
     [checkInventoryTool, createOrderTool, queryOrderTool, shipOrderTool],

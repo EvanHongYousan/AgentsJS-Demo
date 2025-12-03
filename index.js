@@ -60,21 +60,38 @@ console.log(`
   1. 安装依赖：
      npm install
      
-  2. 配置 API Key：
-     cp .env.example .env
-     然后编辑 .env 文件，填入你的 OpenAI API Key
+  2. 配置 API Key（两种方式任选其一）：
      
-  3. 运行第一个示例：
+     方式一：使用 OpenRouter（推荐）🌟
+     ----------------------------------------
+     cp .env.example .env
+     # 编辑 .env，设置：
+     # AI_PROVIDER=openrouter
+     # OPENROUTER_API_KEY=your-key
+     # 获取免费 Key: https://openrouter.ai/keys
+     
+     方式二：使用 OpenAI
+     ----------------------------------------
+     cp .env.example .env
+     # 编辑 .env，设置：
+     # AI_PROVIDER=openai
+     # OPENAI_API_KEY=your-key
+     
+  3. 查看可用模型：
+     npm run models
+     
+  4. 运行第一个示例：
      npm run demo:basic
 
 ═══════════════════════════════════════════════════════════════
 
 📖 文档：
 
-  • README.md          - 项目概述和核心概念
-  • QUICKSTART.md      - 5分钟快速入门指南  
-  • EXAMPLES.md        - 所有示例的详细说明
-  • TROUBLESHOOTING.md - 常见问题和解决方案
+  • README.md            - 项目概述和核心概念
+  • QUICKSTART.md        - 5分钟快速入门指南
+  • OPENROUTER_GUIDE.md  - OpenRouter 详细使用指南 🌟
+  • EXAMPLES.md          - 所有示例的详细说明
+  • TROUBLESHOOTING.md   - 常见问题和解决方案
 
 ═══════════════════════════════════════════════════════════════
 
@@ -88,9 +105,10 @@ console.log(`
 
 🔗 资源链接：
 
-  • LangChain.js 官方文档: https://js.langchain.com/
+  • OpenRouter (推荐): https://openrouter.ai/
+  • OpenRouter Models: https://openrouter.ai/models
+  • LangChain.js 文档: https://js.langchain.com/
   • Agent 指南: https://js.langchain.com/docs/modules/agents/
-  • 工具开发: https://js.langchain.com/docs/modules/tools/
 
 ═══════════════════════════════════════════════════════════════
 

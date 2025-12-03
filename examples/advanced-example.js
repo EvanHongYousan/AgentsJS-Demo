@@ -3,14 +3,11 @@
  * 结合前面所有概念，创建一个功能完整的智能助手
  */
 
-import { ChatOpenAI } from "@langchain/openai";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
 import { BufferMemory } from "langchain/memory";
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { z } from "zod";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { getModel, showModelConfig } from "../config/model-config.js";
 
 async function createSmartAssistant() {
   console.log("🤖 综合示例: 智能助手 Agent\n");
@@ -183,15 +180,11 @@ async function createSmartAssistant() {
     },
   });
 
+  // 显示当前模型配置
+  showModelConfig();
+
   // ===== 创建 Agent =====
-  const model = new ChatOpenAI({
-    modelName: "gpt-3.5-turbo",
-    temperature: 0.7,
-    openAIApiKey: process.env.OPENAI_API_KEY,
-    configuration: {
-      baseURL: process.env.OPENAI_BASE_URL,
-    },
-  });
+  const model = getModel({ temperature: 0.7 });
 
   const memory = new BufferMemory({
     memoryKey: "chat_history",

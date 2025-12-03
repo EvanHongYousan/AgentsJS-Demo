@@ -3,13 +3,10 @@
  * 展示如何给 Agent 添加自定义工具
  */
 
-import { ChatOpenAI } from "@langchain/openai";
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { z } from "zod";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { getModel, showModelConfig } from "../config/model-config.js";
 
 async function runAgentWithTools() {
   console.log("🔧 示例 2: 带工具的 Agent\n");
@@ -64,15 +61,11 @@ async function runAgentWithTools() {
     },
   });
 
+  // 显示当前模型配置
+  showModelConfig();
+
   // 4. 初始化模型
-  const model = new ChatOpenAI({
-    modelName: "gpt-3.5-turbo",
-    temperature: 0,
-    openAIApiKey: process.env.OPENAI_API_KEY,
-    configuration: {
-      baseURL: process.env.OPENAI_BASE_URL,
-    },
-  });
+  const model = getModel({ temperature: 0 });
 
   // 5. 创建 Agent，添加工具
   const agent = await initializeAgentExecutorWithOptions(

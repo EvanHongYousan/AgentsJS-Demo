@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
+    "test": "node scripts/test-connection.js",
+    "models": "node scripts/show-models.js",
     "demo:basic": "node examples/basic-agent.js",
     "demo:tools": "node examples/agent-with-tools.js",
     "demo:memory": "node examples/agent-with-memory.js",
