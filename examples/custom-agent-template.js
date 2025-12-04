@@ -107,7 +107,7 @@ async function createCustomAgent() {
     ],
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "structured-chat-zero-shot-react-description",
       memory: memory, // 如果不需要记忆，删除这行
       verbose: true, // 显示详细日志
       maxIterations: 10, // 最大迭代次数

@@ -17,11 +17,12 @@ async function runBasicAgent() {
   const model = getModel({ temperature: 0.7 });
 
   // 2. 创建 Agent (无工具版本)
+  // 使用 zero-shot-react-description 用于无工具的简单场景
   const agent = await initializeAgentExecutorWithOptions(
     [], // 空工具列表
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "zero-shot-react-description",
       verbose: true, // 显示详细日志
     }
   );

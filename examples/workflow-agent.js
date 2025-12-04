@@ -105,7 +105,7 @@ async function runWorkflowAgent() {
     [checkInventoryTool, createOrderTool, queryOrderTool, shipOrderTool],
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "structured-chat-zero-shot-react-description",
       verbose: true,
       maxIterations: 10,
     }
@@ -115,9 +115,9 @@ async function runWorkflowAgent() {
   const workflows = [
     "帮我查一下笔记本电脑的库存",
     "我是张三，想买2台笔记本电脑，帮我创建订单",
-    "查询我刚才创建的订单状态",
-    "帮我发货刚才的订单",
-    "再查一次订单状态确认已发货",
+    "查询我刚才创建的订单状态, 订单号是1",
+    "帮我发货刚才的订单, 订单号是1",
+    "再查一次订单状态确认已发货, 订单号是1",
   ];
 
   console.log("\n🎯 开始执行订单处理工作流...\n");

@@ -1,6 +1,46 @@
 # 更新日志
 
-## v2.0.0 - OpenRouter 支持 (当前版本)
+## v2.1.0 - Agent 类型修复 (2025-12-03)
+
+### 🐛 重要修复
+
+#### Agent 类型兼容性问题
+- **问题**: `chat-conversational-react-description` 与 DynamicStructuredTool 存在兼容性问题
+- **错误**: `Received tool input did not match expected schema`
+- **修复**: 所有示例更换为更稳定的 Agent 类型
+
+#### 受影响文件
+- ✅ `basic-agent.js` → `zero-shot-react-description`
+- ✅ `agent-with-tools.js` → `structured-chat-zero-shot-react-description`
+- ✅ `agent-with-memory.js` → `structured-chat-zero-shot-react-description`
+- ✅ `multi-agent.js` → `structured-chat-zero-shot-react-description` (3个 Agent)
+- ✅ `workflow-agent.js` → `structured-chat-zero-shot-react-description`
+- ✅ `advanced-example.js` → `structured-chat-zero-shot-react-description`
+- ✅ `custom-agent-template.js` → `structured-chat-zero-shot-react-description`
+
+### 📚 新增文档
+
+- `docs/AGENT_TYPE_FIX.md` - Agent 类型修复详细说明
+- `docs/COMMON_ERRORS.md` - 更新 Schema 验证错误说明，增加 Agent 类型兼容性内容
+- `docs/README.md` - 文档索引（新建）
+
+### 📁 文档整理
+
+- 所有 Markdown 文档移至 `docs/` 目录
+- README.md 保留在根目录
+- 更新所有文档链接
+
+### 💡 最佳实践更新
+
+推荐的 Agent 类型选择：
+- 无工具场景 → `zero-shot-react-description`
+- 带工具场景 → `structured-chat-zero-shot-react-description`
+- OpenAI 专用 → `openai-functions`
+- ❌ 不推荐 → `chat-conversational-react-description`
+
+---
+
+## v2.0.0 - OpenRouter 支持 (2025-12-03)
 
 ### ✨ 新功能
 

@@ -55,11 +55,12 @@ async function runAgentWithMemory() {
   });
 
   // 4. 创建带记忆的 Agent
+  // 使用 structured-chat-zero-shot-react-description 以获得更好的工具兼容性
   const agent = await initializeAgentExecutorWithOptions(
     [saveNoteTool, listNotesTool],
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "structured-chat-zero-shot-react-description",
       memory: memory,
       verbose: true,
     }

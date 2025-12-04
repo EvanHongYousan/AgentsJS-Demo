@@ -207,7 +207,7 @@ async function createSmartAssistant() {
     ],
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "structured-chat-zero-shot-react-description",
       memory: memory,
       verbose: true,
       maxIterations: 10,

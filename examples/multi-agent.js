@@ -39,7 +39,7 @@ async function runMultiAgent() {
     [researchTool],
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "structured-chat-zero-shot-react-description",
       verbose: false,
     }
   );
@@ -61,7 +61,7 @@ async function runMultiAgent() {
     [writerTool],
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "structured-chat-zero-shot-react-description",
       verbose: false,
     }
   );
@@ -82,7 +82,7 @@ async function runMultiAgent() {
     [editorTool],
     model,
     {
-      agentType: "chat-conversational-react-description",
+      agentType: "structured-chat-zero-shot-react-description",
       verbose: false,
     }
   );
